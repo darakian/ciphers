@@ -1,16 +1,6 @@
 #!/usr/bin/python3
 import array
 import string
-#Constants available in strings package
-#ascii_letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-#ascii_lowercase = 'abcdefghijklmnopqrstuvwxyz'
-#ascii_uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-#digits = '0123456789'
-#hexdigits = '0123456789abcdefABCDEF'
-#octdigits = '01234567'
-#printable = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c'
-#punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
-#whitespace = ' \t\n\r\x0b\x0c'
 
 #Taken from https://en.wikibooks.org/wiki/Algorithm_Implementation/Mathematics/Extended_Euclidean_algorithm
 def egcd(a, b):
@@ -28,6 +18,7 @@ def modinv(a, m):
         return None  # modular inverse does not exist
     else:
         return x % m
+#End wikibooks code
 
 #E(x) = (x+a)%m
 def shift(cipherText="mbkmuwo",key=16,alphabet=list(string.ascii_lowercase)):
@@ -90,5 +81,5 @@ def vigenereDecipher(cipherText="vigenerecipher", key=list(string.ascii_lowercas
 #shift()
 #affineEncipher()
 #affineDecipher()
-vigenereEncipher(plainText="attackatdawn",key="lemon")
-vigenereDecipher(cipherText="lxfopvefrnhr",key="lemon")
+#vigenereEncipher(plainText="attackatdawn",key="lemon")
+#vigenereDecipher(cipherText="lxfopvefrnhr",key="lemon")

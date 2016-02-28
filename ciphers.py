@@ -31,6 +31,7 @@ def modinv(a, m):
 
 #E(x) = (x+a)%m
 def shift(cipherText="mbkmuwo",key=16,alphabet=list(string.ascii_lowercase)):
+    cipherText = cipherText.lower()
     key = key%len(alphabet)
     print("Shifting {} by {}".format(cipherText, key))
     result = ""
@@ -38,16 +39,20 @@ def shift(cipherText="mbkmuwo",key=16,alphabet=list(string.ascii_lowercase)):
         #print(alphabet[((alphabet.index(character)+key)%len(alphabet))])
         result=result+(alphabet[((alphabet.index(character)+key)%len(alphabet))])
     print("Result: {}".format(result))
+    return result
 
 #E(x) = (ax+b)%m
 def affineEncipher(plainText="affinecipher",key=(5,8),alphabet=list(string.ascii_lowercase)):
+    plainText = plainText.lower()
     print("Affine Enciphering {} with a={} b={}".format(plainText, key[0], key[1]))
     result = ""
     for character in plainText:
         result = result+(alphabet[((key[0]*alphabet.index(character)+key[1])%len(alphabet))])
     print("Result: {}".format(result))
+    return result
 
 def affineDecipher(cipherText="ihhwvcswfrcp",key=(5,8),alphabet=list(string.ascii_lowercase)):
+    cipherText = cipherText.lower()
     print("Affine Deciphering {} with a={} b={}".format(cipherText, key[0], key[1]))
     inverseKey = modinv(key[0], len(alphabet))
     if inverseKey == None:
@@ -57,8 +62,33 @@ def affineDecipher(cipherText="ihhwvcswfrcp",key=(5,8),alphabet=list(string.asci
     for character in cipherText:
         result = result+(alphabet[((inverseKey*(alphabet.index(character)-key[1]))%len(alphabet))])
     print("Result: {}".format(result))
+    return result
+
+def vigenereEncipher(plainText="vigenerecipher", key=list(string.ascii_lowercase), alphabet=list(string.ascii_lowercase)):
+    plainText = plainText.lower()
+    print("Vigenere Enciphering {} with key = {}".format(plainText, key))
+    result = ""
+    i=0
+    for character in plainText:
+        result = result+alphabet[(alphabet.index(character)+alphabet.index(key[i%len(key)]))%len(alphabet)]
+        i=i+1
+    print("Result: {}".format(result))
+    return result
+
+def vigenereDecipher(cipherText="vigenerecipher", key=list(string.ascii_lowercase), alphabet=list(string.ascii_lowercase)):
+    cipherText = cipherText.lower()
+    print("Vigenere Enciphering {} with key = {}".format(cipherText, key))
+    result = ""
+    i=0
+    for character in cipherText:
+        result = result+alphabet[(alphabet.index(character)-alphabet.index(key[i%len(key)]))%len(alphabet)]
+        i=i+1
+    print("Result: {}".format(result))
+    return result
 
 #Testing area
 #shift()
-affineEncipher()
-affineDecipher()
+#affineEncipher()
+#affineDecipher()
+vigenereEncipher(plainText="attackatdawn",key="lemon")
+vigenereDecipher(cipherText="lxfopvefrnhr",key="lemon")
